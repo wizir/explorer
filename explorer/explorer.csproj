@@ -4,4 +4,9 @@
         <TargetFramework>netcoreapp3.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <TypeScriptCompile Include="Components\main.ts" />
+      <TypeScriptCompile Include="Views\Home\index.ts" />
+    </ItemGroup>
+
 </Project>

@@ -1,3 +1,6 @@
 .idea/
 explorer/obj/
 explorer/bin/
+explorer/node_modules/
+explorer/wwwroot/
+explorer/package-lock.json
