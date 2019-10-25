@@ -1,19 +1,22 @@
 const path = require('path');
-
-
+const AssetsPlugin = require('assets-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
       main: './Views/Home/index.ts'
   },
-  devtool: 'source-map',
   resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   output:{
-      filename: '[name].js',
-      path: path.resolve(__dirname, 'wwwroot/js')
+      filename: '[name]-[contentHash].js',
+      path: path.resolve(__dirname, 'wwwroot')
   },
+  plugins:[
+      new AssetsPlugin({useCompilerPath: true}),
+      new CleanWebpackPlugin()
+  ],
   module:{
       rules:[
           {
