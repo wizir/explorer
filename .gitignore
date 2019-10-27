@@ -4,3 +4,5 @@ explorer/bin/
 explorer/node_modules/
 explorer/wwwroot/
 explorer/package-lock.json
+explorer.Tests/obj/
+explorer.Tests/bin/

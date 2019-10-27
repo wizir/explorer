@@ -7,7 +7,13 @@ using Microsoft.Extensions.Hosting;
 
 namespace explorer
 {
-    public class StaticFileResolver
+    public interface IStaticFileResolver
+    {
+        string GetStylesheetUrl(string name);
+        string GetScriptUrl(string name);
+    }
+    
+    public class StaticFileResolver : IStaticFileResolver
     {
         private readonly IWebHostEnvironment _env;
         private readonly WebpackAssets _webpackAssets;

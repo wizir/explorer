@@ -18,7 +18,7 @@ namespace explorer.Extensions
                 context.Items[Scripts] = new HashSet<string>();
             }
             
-            var resolver = ServiceProvider.Resolve<StaticFileResolver>();
+            var resolver = ServiceProvider.Resolve<IStaticFileResolver>();
             
             ((HashSet<string>) context.Items[Scripts]).Add(resolver.GetScriptUrl(name));
         }
@@ -48,7 +48,7 @@ namespace explorer.Extensions
                 context.Items[Stylesheets] = new HashSet<string>();
             }
             
-            var resolver = ServiceProvider.Resolve<StaticFileResolver>();
+            var resolver = ServiceProvider.Resolve<IStaticFileResolver>();
             
             ((HashSet<string>) context.Items[Stylesheets]).Add(resolver.GetStylesheetUrl(name));
         }
