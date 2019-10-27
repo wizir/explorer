@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,34 +7,34 @@ using Microsoft.Extensions.Hosting;
 
 namespace explorer
 {
-    public interface IStaticFileResolver
-    {
-        string GetStylesheetUrl(string name);
-        string GetScriptUrl(string name);
-    }
-    
-    public class StaticFileResolver : IStaticFileResolver
+    public class StaticFileResolver
     {
         private readonly IWebHostEnvironment _env;
-        public StaticFileResolver(IWebHostEnvironment env)
+        private readonly WebpackAssets _webpackAssets;
+        public StaticFileResolver(IWebHostEnvironment env, WebpackAssets webpackAssets)
         {
             _env = env;
+            _webpackAssets = webpackAssets;
         }
         
         public string GetStylesheetUrl(string name)
         {
             if (_env.IsDevelopment())
             {
-                return $"https://localhost:8080/dist/{name}.js";
+                return $"http://localhost:8080/{name}.css";
             }
-            
-            
-            return "";
+
+            return _webpackAssets[name].Css;
         }
 
         public string GetScriptUrl(string name)
         {
-            return "main-7d3aa80c5903c6dd62ff.js";
+            if (_env.IsDevelopment())
+            {
+                return $"http://localhost:8080/{name}.js";
+            }
+
+            return _webpackAssets[name].Js;
         }
     }
 }

@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-@inject IStaticFileResolver resolver
+@inject StaticFileResolver resolver
 <!DOCTYPE html>
 
 <html>
@@ -14,6 +14,6 @@
     <h1>This is my home/index</h1>
     <h2 id="container"></h2>
 </div>
-    <script src="@resolver.GetScriptUrl("")"></script>
+    <script src="@resolver.GetScriptUrl("main")"></script>
 </body>
 </html>

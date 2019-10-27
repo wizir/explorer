@@ -9,4 +9,13 @@
       <TypeScriptCompile Include="Views\Home\index.ts" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+      <PackageReference Include="Westwind.AspnetCore.LiveReload" Version="0.1.5.4" />
+    </ItemGroup>
+
 </Project>
