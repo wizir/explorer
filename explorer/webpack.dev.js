@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.common.js');
 module.exports = merge(commonConfig, {
    mode: 'development',
    output: {
-       filename: '[name]-[hash].js',
+       filename: '[name].js',
    },
     devServer:{
        inline: false,

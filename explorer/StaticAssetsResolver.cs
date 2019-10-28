@@ -27,8 +27,7 @@ namespace explorer
         {
             if (_env.IsDevelopment())
             {
-//                return $"http://localhost:8080/{name}.js";
-                return $"http://localhost:8080/{_webpackAssets[name].Js}";
+                return $"http://localhost:8080/{name}.js";
             }
 
             return _webpackAssets[name].Css;
@@ -38,8 +37,7 @@ namespace explorer
         {
             if (_env.IsDevelopment())
             {
-                //return $"http://localhost:8080/{name}.js";
-                return $"http://localhost:8080/{_webpackAssets[name].Js}.js";
+                return $"http://localhost:8080/{name}.js";
             }
 
             return _webpackAssets[name].Js;
