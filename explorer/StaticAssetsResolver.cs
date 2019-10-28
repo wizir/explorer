@@ -7,17 +7,17 @@ using Microsoft.Extensions.Hosting;
 
 namespace explorer
 {
-    public interface IStaticFileResolver
+    public interface IStaticAssetsResolver
     {
         string GetStylesheetUrl(string name);
         string GetScriptUrl(string name);
     }
     
-    public class StaticFileResolver : IStaticFileResolver
+    public class StaticAssetsResolver : IStaticAssetsResolver
     {
         private readonly IWebHostEnvironment _env;
         private readonly WebpackAssets _webpackAssets;
-        public StaticFileResolver(IWebHostEnvironment env, WebpackAssets webpackAssets)
+        public StaticAssetsResolver(IWebHostEnvironment env, WebpackAssets webpackAssets)
         {
             _env = env;
             _webpackAssets = webpackAssets;
@@ -27,7 +27,7 @@ namespace explorer
         {
             if (_env.IsDevelopment())
             {
-                return $"http://localhost:8080/{name}.css";
+                return $"http://localhost:8080/{name}.js";
             }
 
             return _webpackAssets[name].Css;

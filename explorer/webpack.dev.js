@@ -7,4 +7,16 @@ module.exports = merge(commonConfig, {
    output: {
        filename: '[name].js'
    },
+    module:{
+        rules:[
+            {
+                test: /\.scss$/,
+                use:[
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ]
+    }
 });

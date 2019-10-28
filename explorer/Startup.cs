@@ -20,7 +20,7 @@ namespace explorer
         {
             services.AddLiveReload();
             services.AddControllersWithViews();
-            services.AddSingleton<IStaticFileResolver, StaticFileResolver>();
+            services.AddSingleton<IStaticAssetsResolver, StaticAssetsResolver>();
             services.AddSingleton<WebpackAssets>();
             
             ServiceProvider.Setup(services);

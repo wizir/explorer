@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace explorer.Extensions
 {
@@ -18,7 +20,7 @@ namespace explorer.Extensions
                 context.Items[Scripts] = new HashSet<string>();
             }
             
-            var resolver = ServiceProvider.Resolve<IStaticFileResolver>();
+            var resolver = ServiceProvider.Resolve<IStaticAssetsResolver>();
             
             ((HashSet<string>) context.Items[Scripts]).Add(resolver.GetScriptUrl(name));
         }
@@ -48,7 +50,7 @@ namespace explorer.Extensions
                 context.Items[Stylesheets] = new HashSet<string>();
             }
             
-            var resolver = ServiceProvider.Resolve<IStaticFileResolver>();
+            var resolver = ServiceProvider.Resolve<IStaticAssetsResolver>();
             
             ((HashSet<string>) context.Items[Stylesheets]).Add(resolver.GetStylesheetUrl(name));
         }
@@ -62,10 +64,19 @@ namespace explorer.Extensions
             {
                 return HtmlString.Empty;
             }
+
+            var env = ServiceProvider.Resolve<IWebHostEnvironment>();
             
             foreach (var stylesheetUrl in hashSet)
             {
-                builder.AppendLine($"<link rel=\"stylesheet\" href=\"{stylesheetUrl}\"/>");
+                if (env.IsDevelopment())
+                {
+                    builder.AppendLine($"<script src=\"{stylesheetUrl}\"></script>");
+                }
+                else
+                {
+                    builder.AppendLine($"<link rel=\"stylesheet\" href=\"{stylesheetUrl}\"/>");
+                }
             }
 
             return new HtmlString(builder.ToString());

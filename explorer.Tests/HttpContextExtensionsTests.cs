@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text.Encodings.Web;
 using explorer.Extensions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using NUnit.Framework;
 using ServiceProvider = explorer.Extensions.ServiceProvider;
+
 
 namespace explorer.Tests
 {
@@ -19,7 +19,7 @@ namespace explorer.Tests
         public void SetUp()
         {
             var services = new ServiceCollection();
-            var mock = new Mock<IStaticFileResolver>();
+            var mock = new Mock<IStaticAssetsResolver>();
 
             mock.Setup(m => m.GetScriptUrl(It.IsAny<string>())).Returns<string>(s => $"script:{s}");
             mock.Setup(m => m.GetStylesheetUrl(It.IsAny<string>())).Returns<string>(s => $"stylesheet:{s}");
@@ -74,10 +74,14 @@ namespace explorer.Tests
         
         
         [Test]
-        public void RenderStylesheets_WorksFine()
+        public void RenderStylesheets_Production()
         {
+
+            var mock = new Mock<IWebHostEnvironment>();
+            mock.Setup(m => m.EnvironmentName).Returns("Production");
+            ServiceProvider.AddSingleton(provider => mock.Object);
+
             var context = new DefaultHttpContext();
-            
             context.AddStylesheet("main");
 
             var rendered = context.RenderStylesheets();
@@ -86,6 +90,26 @@ namespace explorer.Tests
             
             Assert.AreEqual(expected.Value, rendered.Value);
         }
+        
+        
+        [Test]
+        public void RenderStylesheets_Development()
+        {
+
+            var mock = new Mock<IWebHostEnvironment>();
+            mock.Setup(m => m.EnvironmentName).Returns("Development");
+            ServiceProvider.AddSingleton(provider => mock.Object);
+
+            var context = new DefaultHttpContext();
+            context.AddStylesheet("main");
+
+            var rendered = context.RenderStylesheets();
+
+            var expected = new HtmlString("<script src=\"stylesheet:main\"></script>\n");
+            
+            Assert.AreEqual(expected.Value, rendered.Value);
+        }
+        
         
         
         [Test]

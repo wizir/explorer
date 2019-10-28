@@ -4,7 +4,8 @@ const AssetsPlugin = require('assets-webpack-plugin');
 
 module.exports = {
   entry: {
-      main: './Views/Home/index.ts'
+      main: './Views/Home/index.ts',
+      style: './Views/style.scss'
   },
   resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
