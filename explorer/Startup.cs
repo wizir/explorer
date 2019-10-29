@@ -18,10 +18,7 @@ namespace explorer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLiveReload(config =>
-            {
-                config.WebSocketHost = "ws://localhost:9000";
-            });
+            services.AddLiveReload();
             services.AddControllersWithViews();
             services.AddSingleton<IStaticAssetsResolver, StaticAssetsResolver>();
             services.AddSingleton<WebpackAssets>();

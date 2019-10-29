@@ -8,12 +8,10 @@ module.exports = merge(commonConfig, {
        filename: '[name].js',
    },
     devServer:{
-       inline: false,
-       proxy: {
-           '/ws': {
-               target: `ws://localhost:9000`,
-           }
-       }
+        host: '127.0.0.1',
+        port: 8080, 
+        disableHostCheck: true,
+        https: true
     },
     module:{
         rules:[
