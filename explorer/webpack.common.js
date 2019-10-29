@@ -1,19 +1,19 @@
 const path = require('path');
-
+const AssetsPlugin = require('assets-webpack-plugin');
 
 
 module.exports = {
   entry: {
-      main: './Views/Home/index.ts'
+      main: './Views/Home/index.ts',
+      style: './Views/style.scss'
   },
-  devtool: 'source-map',
   resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  output:{
-      filename: '[name].js',
-      path: path.resolve(__dirname, 'wwwroot/js')
-  },
+
+  plugins:[
+      new AssetsPlugin({path: path.resolve(__dirname, 'wwwroot')}),
+  ],
   module:{
       rules:[
           {

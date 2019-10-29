@@ -1,0 +1,19 @@
+@using explorer.Extensions
+@{
+    Context.AddStylesheet("style");
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>explorer</title>
+    @Context.RenderStylesheets()
+</head>
+<body>
+<p>(layout)</p>
+@RenderBody()
+
+
+@Context.RenderScripts()
+</body>
+</html>
