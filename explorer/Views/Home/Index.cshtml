@@ -1,7 +1,6 @@
-@using explorer.Extensions
+@model IEnumerable<Post>
 @{
     Layout = "_Layout";
-    Context.AddScript("main");
 }
 
 <div>
@@ -9,5 +8,11 @@
     <p>this is my new text</p>
     <h2 id="container"></h2>
     <a asp-controller="Kitchen">Go to kitchen</a>
+    
+    
+    @foreach (Post post in Model)
+    {
+        <h1>@post.Title</h1>
+        <p>@post.Body</p>
+    }
 </div>
-
