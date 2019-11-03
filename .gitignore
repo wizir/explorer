@@ -6,4 +6,3 @@ explorer/wwwroot/
 explorer/package-lock.json
 explorer.Tests/obj/
 explorer.Tests/bin/
-explorer/appsettings.json
