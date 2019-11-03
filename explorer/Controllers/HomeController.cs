@@ -6,15 +6,15 @@ namespace explorer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPostRepository _repository;
-        public HomeController(IPostRepository repository)
+        private readonly IRepository<Post> _repository;
+        public HomeController(IRepository<Post> repository)
         {
             _repository = repository;
         }
         
         public IActionResult Index()
         {
-            return View(_repository.Posts);
+            return View(_repository.Items);
         }
     }
 }

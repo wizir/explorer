@@ -32,7 +32,8 @@ namespace explorer
 
 
 
-            services.AddTransient<IPostRepository, PostsRepository>();
+            services.AddTransient<IRepository<Post>, PostsRepository>();
+            services.AddTransient<IRepository<RecipeEntry>, RecipeRepository>();
             
             ServiceProvider.Setup(services);
         }

@@ -5,16 +5,8 @@ using Microsoft.Extensions.FileProviders;
 
 namespace explorer.Model
 {
-    public interface IPostRepository
-    {
-        IQueryable<Post> Posts { get; }
-        void SavePost(Post post);
-        Post DeletePost(int id);
-
-    }
     
-    
-    public class PostsRepository : IPostRepository
+    public class PostsRepository : IRepository<Post>
     {
         private readonly ApplicationDbContext _context;
         public PostsRepository(ApplicationDbContext context)
@@ -22,9 +14,9 @@ namespace explorer.Model
             _context = context;
         }
 
-        public IQueryable<Post> Posts => _context.Posts;
+        public IQueryable<Post> Items => _context.Posts;
 
-        public void SavePost(Post post)
+        public void SaveItem(Post post)
         {
             if(post.Created == null) post.Created = DateTimeOffset.Now;
             
@@ -46,7 +38,7 @@ namespace explorer.Model
             _context.SaveChanges();
         }
 
-        public Post DeletePost(int id)
+        public Post DeleteItem(int id)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);
             if (post != null)
