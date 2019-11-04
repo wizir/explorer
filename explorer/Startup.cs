@@ -31,9 +31,8 @@ namespace explorer
               options => options.UseNpgsql(_configuration.GetConnectionString("psql")));
 
 
-
             services.AddTransient<IRepository<Post>, PostsRepository>();
-            services.AddTransient<IRepository<RecipeEntry>, RecipeRepository>();
+            services.AddTransient<IRepository<Recipe>, RecipeRepository>();
             
             ServiceProvider.Setup(services);
         }

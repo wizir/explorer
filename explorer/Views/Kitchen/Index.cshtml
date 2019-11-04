@@ -1,6 +1,21 @@
+@model IEnumerable<Recipe> 
+
 @{
     Layout = "_Layout";
 }
 
-<h1>This is my kitchen index</h1>
+@foreach (Recipe recipe in Model)
+{
+    <h1>@recipe.DishName</h1>
+    <div>@recipe.Description</div>
+    <div>@recipe.CookingProcess</div>
+                               
+    <ul>
+        @foreach (Recipe.Component component in recipe.Ingredients)
+        {
+            <li>@component.Ingredient.Name @component.Amount</li>
+        }
+    </ul>
+}
+
 <a asp-controller="Home">Go Home</a>

@@ -11,6 +11,6 @@ namespace explorer.Model
 
         
         public DbSet<Post> Posts { get; set; }
-        public DbSet<RecipeEntry> Recipes { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
     }
 }

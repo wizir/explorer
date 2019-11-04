@@ -1,23 +1,33 @@
+using System;
 using System.Linq;
 
 namespace explorer.Model
 {
-    public class RecipeRepository : IRepository<RecipeEntry>
+    public class RecipeRepository : IRepository<Recipe>
     {
-        private readonly ApplicationDbContext _contest;
+        private readonly ApplicationDbContext _context;
 
-        public RecipeRepository(ApplicationDbContext contest)
+        public RecipeRepository(ApplicationDbContext context)
         {
-            _contest = contest;
+            _context = context;
         }
 
-        public IQueryable<RecipeEntry> Items => _contest.Recipes;
-        public void SaveItem(RecipeEntry post)
+        public IQueryable<Recipe> Items => _context.Recipes;
+        public void SaveItem(Recipe item)
         {
-            throw new System.NotImplementedException();
+            if(item.Created == default) item.Created = DateTimeOffset.Now;
+
+            if (item.Id == default)
+            {
+                _context.Recipes.Add(item);
+            }
+            else
+            {
+//                _context.Recipes
+            }
         }
 
-        public RecipeEntry DeleteItem(int id)
+        public Recipe DeleteItem(int id)
         {
             throw new System.NotImplementedException();
         }
