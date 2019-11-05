@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace explorer.Model
 {
+    [Table("Recipes")]
     public class Recipe : DatabaseObject
     {
         public string DishName { get; set; }

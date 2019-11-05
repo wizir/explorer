@@ -24,18 +24,12 @@ namespace explorer
         {
             services.AddLiveReload();
             services.AddControllersWithViews();
-            services.AddSingleton<IStaticAssetsResolver, StaticAssetsResolver>();
-            services.AddSingleton<WebpackAssets>();
 
-            services.AddDbContext<ApplicationDbContext>(
-              options => options.UseNpgsql(_configuration.GetConnectionString("psql")));
-
-
-            services.AddTransient<IRepository<Post>, PostsRepository>();
-            services.AddTransient<IRepository<Recipe>, RecipeRepository>();
+            InjectServices(services);
             
             ServiceProvider.Setup(services);
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +47,21 @@ namespace explorer
                 {
                     endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 });
+        }
+        
+        
+        private void InjectServices(IServiceCollection services)
+        {
+            services.AddSingleton<IStaticAssetsResolver, StaticAssetsResolver>();
+            services.AddSingleton<WebpackAssets>();
+
+            services.AddDbContext<PostgreDbContext<Page>>();
+
+            services.AddDbContext<PostgreDbContext<Recipe>>();
+
+
+            services.AddTransient<IRepository<Page>, DatabaseRepository<Page>>();
+            services.AddTransient<IRepository<Recipe>, DatabaseRepository<Recipe>>();
         }
     }
 }

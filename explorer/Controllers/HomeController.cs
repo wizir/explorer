@@ -6,8 +6,8 @@ namespace explorer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<Post> _repository;
-        public HomeController(IRepository<Post> repository)
+        private readonly IRepository<Page> _repository;
+        public HomeController(IRepository<Page> repository)
         {
             _repository = repository;
         }

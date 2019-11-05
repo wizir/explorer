@@ -1,4 +1,4 @@
-@model IEnumerable<Post>
+@model IEnumerable<Page>
 @{
     Layout = "_Layout";
 }
@@ -10,7 +10,7 @@
     <a asp-controller="Kitchen">Go to kitchen</a>
     
     
-    @foreach (Post post in Model)
+    @foreach (Page post in Model)
     {
         <h1>@post.Title</h1>
         <p>@post.Body</p>
