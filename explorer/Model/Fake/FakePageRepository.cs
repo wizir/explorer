@@ -17,14 +17,14 @@ namespace explorer.Model
             },
             new Page
             {
-                Id = 1, Created = new DateTimeOffset(new DateTime(2019, 10, 22, 15, 21, 14)), 
+                Id = 2, Created = new DateTimeOffset(new DateTime(2019, 10, 22, 15, 21, 14)), 
                 Date = new DateTime(2019, 10, 22),
                 Title = "moj cudowny dzień",
                 Body = "dzisiaj było coduwnie, że ja cie piernicze"
             },
             new Page
             {
-                Id = 1, Created = new DateTimeOffset(new DateTime(2019, 10, 27, 12, 30, 45)), LastModified = new DateTimeOffset(new DateTime(2019, 10, 27, 14, 0,0)),
+                Id = 3, Created = new DateTimeOffset(new DateTime(2019, 10, 27, 12, 30, 45)), LastModified = new DateTimeOffset(new DateTime(2019, 10, 27, 14, 0,0)),
                 Date = new DateTime(2019, 10, 27),
                 Title = "wspaniała wycieczka do landrynkowej krainy",
                 Body = "dzisiaj pojechalismy sobie do landrynkowej krainy, było cudownie"

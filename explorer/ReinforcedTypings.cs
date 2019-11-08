@@ -17,9 +17,8 @@ namespace explorer
             {
                 config.UseModules();
                 config.RootNamespace("explorer.Model");
-                
-                
-                
+                config.CamelCaseForMethods();
+                config.CamelCaseForProperties();
                 
             });
         }
