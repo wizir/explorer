@@ -5,6 +5,7 @@ const AssetsPlugin = require('assets-webpack-plugin');
 module.exports = {
   entry: {
       main: './Views/Home/index.ts',
+      Diary: './Views/Diary/Diary',
       style: './Views/style.scss'
   },
   resolve: {

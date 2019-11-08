@@ -2,9 +2,9 @@
 
 @{
     Layout = "_Layout";
+    Context.AddScript("Diary");
 }
 
 
-<div>
-    
-</div>
+<div id="diaryRoot" params="@Model.ToJson()"></div>
+
