@@ -1,0 +1,10 @@
+@model IEnumerable<Page>
+
+@{
+    Layout = "_Layout";
+    Context.AddScript("Diary");
+}
+
+
+<div id="diaryRoot" params="@Model.ToJson()"></div>
+

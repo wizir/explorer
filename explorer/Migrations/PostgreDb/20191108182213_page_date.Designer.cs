@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using explorer.Model;
 
-namespace explorer.Migrations
+namespace explorer.Migrations.PostgreDb
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191102220144_Initial")]
-    partial class Initial
+    [DbContext(typeof(PostgreDbContext<Page>))]
+    [Migration("20191108182213_page_date")]
+    partial class page_date
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace explorer.Migrations
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("explorer.Model.Post", b =>
+            modelBuilder.Entity("explorer.Model.Page", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,7 +31,10 @@ namespace explorer.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset?>("Created")
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("Date")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTimeOffset?>("LastModified")
@@ -42,7 +45,7 @@ namespace explorer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Posts");
+                    b.ToTable("DiaryPages");
                 });
 #pragma warning restore 612, 618
         }

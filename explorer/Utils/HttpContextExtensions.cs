@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace explorer.Extensions
+namespace explorer.Utils    
 {
     public static class HttpContextExtensions
     {

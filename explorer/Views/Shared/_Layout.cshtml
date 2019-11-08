@@ -1,4 +1,3 @@
-@using explorer.Extensions
 @{
     Context.AddStylesheet("style");
 }
@@ -10,10 +9,9 @@
     @Context.RenderStylesheets()
 </head>
 <body>
-<p>(layout)</p>
-@RenderBody()
 
+    @RenderBody()
 
-@Context.RenderScripts()
+    @Context.RenderScripts()
 </body>
 </html>

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace explorer.Extensions
+namespace explorer.Utils
 {
     public static class ServiceProvider
     {

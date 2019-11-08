@@ -1,4 +1,3 @@
-@model IEnumerable<Post>
 @{
     Layout = "_Layout";
 }
@@ -8,11 +7,6 @@
     <p>this is my new text</p>
     <h2 id="container"></h2>
     <a asp-controller="Kitchen">Go to kitchen</a>
+    <a asp-controller="Diary">Go to diary</a>
     
-    
-    @foreach (Post post in Model)
-    {
-        <h1>@post.Title</h1>
-        <p>@post.Body</p>
-    }
 </div>

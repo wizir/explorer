@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Westwind.AspNetCore.LiveReload;
-using ServiceProvider = explorer.Extensions.ServiceProvider;
+using ServiceProvider = explorer.Utils.ServiceProvider;
+
 
 namespace explorer
 {
@@ -24,18 +25,11 @@ namespace explorer
         {
             services.AddLiveReload();
             services.AddControllersWithViews();
-            services.AddSingleton<IStaticAssetsResolver, StaticAssetsResolver>();
-            services.AddSingleton<WebpackAssets>();
 
-            services.AddDbContext<ApplicationDbContext>(
-              options => options.UseNpgsql(_configuration.GetConnectionString("psql")));
-
-
-
-            services.AddTransient<IPostRepository, PostsRepository>();
-            
+            InjectServices(services);
             ServiceProvider.Setup(services);
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +47,22 @@ namespace explorer
                 {
                     endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 });
+        }
+        
+        
+        private void InjectServices(IServiceCollection services)
+        {
+            services.AddSingleton<IStaticAssetsResolver, StaticAssetsResolver>();
+            services.AddSingleton<WebpackAssets>();
+
+            services.AddDbContext<PostgreDbContext<Page>>();
+
+            services.AddDbContext<PostgreDbContext<Recipe>>();
+
+
+//            services.AddTransient<IRepository<Page>, DatabaseRepository<Page>>();
+            services.AddTransient<IRepository<Page>, FakePageRepository>();
+            services.AddTransient<IRepository<Recipe>, DatabaseRepository<Recipe>>();
         }
     }
 }
