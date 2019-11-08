@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+using Reinforced.Typings.Attributes;
 
 namespace explorer.Model
 {
+    [TsClass]
     [Table("DiaryPages")]
     public class Page : DatabaseObject
     {

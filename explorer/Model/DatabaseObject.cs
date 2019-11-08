@@ -1,9 +1,9 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using Reinforced.Typings.Attributes;
 
 namespace explorer.Model
 {
+    [TsClass]
     public abstract class DatabaseObject
     {
         public int Id { get; set; }
