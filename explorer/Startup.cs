@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Westwind.AspNetCore.LiveReload;
-using ServiceProvider = explorer.Extensions.ServiceProvider;
+using ServiceProvider = explorer.Utils.ServiceProvider;
+
 
 namespace explorer
 {
@@ -26,7 +27,6 @@ namespace explorer
             services.AddControllersWithViews();
 
             InjectServices(services);
-            
             ServiceProvider.Setup(services);
         }
 
@@ -60,7 +60,8 @@ namespace explorer
             services.AddDbContext<PostgreDbContext<Recipe>>();
 
 
-            services.AddTransient<IRepository<Page>, DatabaseRepository<Page>>();
+//            services.AddTransient<IRepository<Page>, DatabaseRepository<Page>>();
+            services.AddTransient<IRepository<Page>, FakePageRepository>();
             services.AddTransient<IRepository<Recipe>, DatabaseRepository<Recipe>>();
         }
     }
